@@ -8,8 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 const theme = extendTheme({
   config: {
-    initialColorMode: 'light',
-    useSystemColorMode: false,
+    initialColorMode: 'system',
+    useSystemColorMode: true,
   },
   colors: {
     neutral: {
