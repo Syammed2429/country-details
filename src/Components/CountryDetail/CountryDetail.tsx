@@ -77,7 +77,7 @@ export const CountryDetail = () => {
                         // w="80%"
                         >
                             <Image
-                                boxSize={{ base: "100px", md: "100%", lg: '80%' }}
+                                boxSize={{ base: "100%", md: "100%", lg: '80%' }}
 
 
                                 // boxSize="85%"
