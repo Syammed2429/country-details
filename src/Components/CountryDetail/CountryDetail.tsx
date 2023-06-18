@@ -99,20 +99,24 @@ export const CountryDetail = () => {
                                 mb={10}
                             >{countryDetails?.name}</Text>
                             <Flex
-                                justifyContent='space-between'
+                                direction={{ base: "column", md: "column", lg: "row" }}
+                                justifyContent={{ base: "flex-start", md: "space-between" }}
                             >
-                                <Box>
-                                    <Text>Native Name: <span className="">{countryDetails?.nativeName}</span></Text>
-                                    <Text>Population: <span>{countryDetails?.population}</span></Text>
-                                    <Text>Region: <span className="text-stone-400	text-md">{countryDetails?.region}</span></Text>
-                                    <Text>Sub Region: <span>{countryDetails?.subregion}</span></Text>
-                                    <Text>Capital: <span>{countryDetails?.capital}</span></Text>
+                                <Box
+
+
+                                >
+                                    <Text mb={2}>Native Name: <span className="">{countryDetails?.nativeName}</span></Text>
+                                    <Text mb={2}>Population: <span>{countryDetails?.population}</span></Text>
+                                    <Text mb={2}>Region: <span className="text-stone-400	text-md">{countryDetails?.region}</span></Text>
+                                    <Text mb={2}>Sub Region: <span>{countryDetails?.subregion}</span></Text>
+                                    <Text mb={2}>Capital: <span>{countryDetails?.capital}</span></Text>
                                 </Box>
                                 <Box>
-                                    <Text>Top Level Domain: <span>{countryDetails?.topLevelDomain}</span></Text>
+                                    <Text mb={2}>Top Level Domain: <span>{countryDetails?.topLevelDomain}</span></Text>
                                     <Flex>
 
-                                        <Text>Currencies: </Text>
+                                        <Text mb={2}>Currencies: </Text>
                                         {countryDetails?.currencies?.map((currency) => (
                                             <Box key={currency.code}
                                                 mx={1}
@@ -122,7 +126,7 @@ export const CountryDetail = () => {
                                         ))}
                                     </Flex>
                                     <Flex>
-                                        <Text>Languages:</Text>
+                                        <Text mb={2}>Languages:</Text>
                                         {countryDetails?.languages?.map((language) => (
                                             <Box key={language.iso639_1}
                                                 mx={1}
