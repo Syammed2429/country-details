@@ -1,18 +1,19 @@
-import { AspectRatio, Box, Card, CardBody, CardHeader, Flex, Image, Input, Select, SimpleGrid, Spacer, Text, useBreakpointValue } from "@chakra-ui/react";
-import countiedData from '../../assets/data.json'
+import { AspectRatio, Box, Card, CardBody, Flex, Image, Input, Select, SimpleGrid, Spacer, Text, useBreakpointValue } from "@chakra-ui/react";
+import countiesData from '../../assets/data.json'
 import { useEffect, useState } from "react";
 import { CountryData } from "../../Interfaces/Interface";
+import { useNavigate } from "react-router-dom";
 
 export const Countries = () => {
     const [countries, setCountries] = useState<CountryData[] | null>(null)
-
+    const navigate = useNavigate()
     const flexDir = useBreakpointValue({
         base: "column",
         md: "row",
     }) as any;
 
     useEffect(() => {
-        const convertedData: any[] = countiedData.map((item) => ({
+        const convertedData: any[] = countiesData.map((item) => ({
             name: item.name,
             topLevelDomain: item.topLevelDomain,
             alpha2Code: item.alpha2Code,
@@ -45,6 +46,11 @@ export const Countries = () => {
         // }
 
     }, []);
+
+    const viewCountry = (numericCode: string): void => {
+        navigate(`/country-details/${numericCode}`)
+    }
+
     return (
         <>
             {/* FIlter and search section start */}
@@ -78,22 +84,24 @@ export const Countries = () => {
             <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing="8" mx={5}>
                 {countries &&
                     countries.map((el, i) => (
-                        <Card key={i}>
-                            <CardHeader>
-                                <Box w="100%">
-                                    <AspectRatio ratio={3 / 2}>
-                                        <Image
-                                            boxSize="100%"
-                                            objectFit="cover"
-                                            src={el.flags.svg}
-                                            alt={el.name}
-                                        />
-                                    </AspectRatio>
-                                </Box>
-                            </CardHeader>
+                        <Card key={i}
+                            onClick={() => viewCountry(el.numericCode)}
+                        >
+
+                            <Box w="100%">
+                                <AspectRatio ratio={3 / 2}>
+                                    <Image
+                                        boxSize="100%"
+                                        objectFit="cover"
+                                        src={el.flags.svg}
+                                        alt={el.name}
+                                    />
+                                </AspectRatio>
+                            </Box>
                             <CardBody>
                                 <Text fontWeight="800"
                                     fontSize='xl'
+                                    mb={5}
                                 >
                                     {el.name}
                                 </Text>
