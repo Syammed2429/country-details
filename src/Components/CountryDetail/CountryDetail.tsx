@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import countiesData from '../../assets/data.json'
 import { useEffect, useState } from "react";
 import { CountryData } from "../../Interfaces/Interface";
@@ -8,6 +8,7 @@ import { IoMdArrowBack } from 'react-icons/io'
 export const CountryDetail = () => {
     const [countries, setCountries] = useState<CountryData[] | null>(null)
     const [countryDetails, setCountryDetails] = useState<CountryData | null>(null);
+    const navigate = useNavigate()
 
 
     const { id } = useParams<{ id: string }>();
@@ -51,10 +52,10 @@ export const CountryDetail = () => {
     return (
         <>
             <Box
-                // mt={8}
                 mt={8} px={8} py={4}
             >
                 <Button
+                    onClick={() => (navigate(-1))}
                     m={8}
                     leftIcon={<IoMdArrowBack />}
                 >Back</Button>
