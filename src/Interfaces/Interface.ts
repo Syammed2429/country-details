@@ -4,8 +4,8 @@ export interface CountryData {
     alpha2Code: string;
     alpha3Code: string;
     callingCodes: string[];
-    capital: string;
-    altSpellings: string[];
+    capital?: string;
+    altSpellings?: string[];
     subregion: string;
     region: string;
     population: number;
