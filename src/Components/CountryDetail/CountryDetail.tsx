@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import countiesData from '../../assets/data.json'
 import { useEffect, useState } from "react";
 import { CountryData } from "../../Interfaces/Interface";
-import { AspectRatio, Box, Button, Card, Container, Flex, Image, SimpleGrid, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Card, Flex, Image, Text } from "@chakra-ui/react";
 import { IoMdArrowBack } from 'react-icons/io'
 
 export const CountryDetail = () => {
@@ -42,17 +42,9 @@ export const CountryDetail = () => {
         }));
 
         setCountries(convertedData);
-
-        console.log('countries:', countries)
-        const countryDetails = countries?.find(country => country.numericCode === id)
-        console.log('countryDetails:', countryDetails)
-
-        // }
-
     }, []);
     useEffect(() => {
         const country = countries?.find((country) => country.numericCode === id);
-        console.log('country:', country)
         setCountryDetails(country as CountryData);
     }, [countries, id]);
 
@@ -74,24 +66,16 @@ export const CountryDetail = () => {
                     >
                         <Box
                             px={8} py={4}
-                        // w="80%"
                         >
                             <Image
                                 boxSize={{ base: "100%", md: "100%", lg: '80%' }}
-
-
-                                // boxSize="85%"
                                 objectFit="cover"
                                 src={countryDetails?.flags.svg}
                                 alt={countryDetails?.name}
                             />
                         </Box>
-
-                        {/* <Spacer /> */}
                         <Box
-
                             px={8} py={4} mt={{ base: 8, md: 8 }}
-
                             w="70%"
                         >
                             <Text fontWeight={'extrabold'}
@@ -102,10 +86,7 @@ export const CountryDetail = () => {
                                 direction={{ base: "column", md: "column", lg: "row" }}
                                 justifyContent={{ base: "flex-start", md: "space-between" }}
                             >
-                                <Box
-
-
-                                >
+                                <Box>
                                     <Text mb={2}>Native Name: <span className="">{countryDetails?.nativeName}</span></Text>
                                     <Text mb={2}>Population: <span>{countryDetails?.population}</span></Text>
                                     <Text mb={2}>Region: <span className="text-stone-400	text-md">{countryDetails?.region}</span></Text>
