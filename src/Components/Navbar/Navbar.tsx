@@ -12,8 +12,10 @@ export const Navbar: FC = () => {
         <>
 
             <Box>
-                <Flex boxShadow="dark-lg" p="5" alignItems="center" w="100%">
-                    <Text flex="1">Where in the world?</Text>
+                <Flex boxShadow="2xl" p="5" alignItems="center" w="100%">
+                    <Text flex="1"
+                        fontWeight={'800'}
+                    >Where in the world?</Text>
                     <HStack fontSize="18">
                         <Box
                             _hover={{ cursor: "pointer" }}
