@@ -1,16 +1,30 @@
-import { AspectRatio, Box, Card, CardBody, Flex, Image, Input, Select, SimpleGrid, Spacer, Text, useBreakpointValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Card, CardBody, Flex, Image, Input, Select, SimpleGrid, Spacer, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
 import countiesData from '../../assets/data.json'
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { CountryData } from "../../Interfaces/Interface";
 import { useNavigate } from "react-router-dom";
 
 export const Countries = () => {
-    const [countries, setCountries] = useState<CountryData[] | null>(null)
+    const [countries, setCountries] = useState<CountryData[]>([]); // Initialize with an empty array
+    const [filteredCountries, setFilteredCountries] = useState<CountryData[] | null>(null);
+
+    // const [countries, setCountries] = useState<CountryData[] | null>(null)
     const navigate = useNavigate()
     const flexDir = useBreakpointValue({
         base: "column",
         md: "row",
     }) as any;
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const countryName = e.target.value;
+        if (countryName.trim() === '') {
+            setFilteredCountries(null);
+        } else {
+            const foundData = countries?.filter((el) => el.name.includes(countryName));
+            setFilteredCountries(foundData ?? []);
+        }
+    };
+
 
     useEffect(() => {
         const convertedData: any[] = countiesData.map((item) => ({
@@ -58,6 +72,7 @@ export const Countries = () => {
                 <Flex direction={flexDir} alignItems="center" mb={4}>
                     <Input
                         type="text"
+                        onChange={handleChange}
                         placeholder="Search for a country..."
                         mr={{ base: 0, md: 2 }}
                         mb={{ base: 4, md: 0 }}
@@ -81,10 +96,18 @@ export const Countries = () => {
             </Box>
             {/* FIlter and search section end */}
 
-            <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing="8" mx={5}>
+            <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing="8" mx={5}
+
+            >
+
+                {!countries?.length ? (
+                    <Spinner />
+                ) : null
+                }
                 {countries &&
-                    countries.map((el, i) => (
+                    (filteredCountries || countries).map((el, i) => (
                         <Card key={i}
+                            _hover={{ cursor: 'pointer' }}
                             onClick={() => viewCountry(el.numericCode)}
                         >
 
