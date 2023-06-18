@@ -57,6 +57,7 @@ export const CountryDetail = () => {
                 <Button
                     onClick={() => (navigate(-1))}
                     m={8}
+                    mx={16}
                     leftIcon={<IoMdArrowBack />}
                 >Back</Button>
 
@@ -103,7 +104,7 @@ export const CountryDetail = () => {
                                             <Box key={currency.code}
                                                 mx={1}
                                             >
-                                                {currency.name})
+                                                {currency.name}
                                             </Box>
                                         ))}
                                     </Flex>

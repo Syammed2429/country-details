@@ -5,7 +5,7 @@ import { CountryData } from "../../Interfaces/Interface";
 import { useNavigate } from "react-router-dom";
 
 export const Countries = () => {
-    const [countries, setCountries] = useState<CountryData[]>([]); // Initialize with an empty array
+    const [countries, setCountries] = useState<CountryData[]>([]);
     const [filteredCountries, setFilteredCountries] = useState<CountryData[] | null>(null);
 
     // const [countries, setCountries] = useState<CountryData[] | null>(null)
