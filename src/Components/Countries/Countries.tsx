@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Card, CardBody, Flex, Image, Input, Select, SimpleGrid, Spacer, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Card, CardBody, Center, Flex, Image, Input, Select, SimpleGrid, Spacer, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
 import countiesData from '../../assets/data.json'
 import { ChangeEvent, useEffect, useState } from "react";
 import { CountryData } from "../../Interfaces/Interface";
@@ -79,27 +79,30 @@ export const Countries = () => {
     return (
         <>
             {/* FIlter and search section start */}
-            <Box my={10}>
-                <Flex direction={flexDir} alignItems="center" mb={4}>
+            <Box my={10}
+                mx={5}
+            >
+                <Flex direction={flexDir} alignItems="center"
+                    mb={4}>
                     <Input
                         type="text"
                         onChange={handleChange}
                         placeholder="Search for a country..."
                         mr={{ base: 0, md: 2 }}
                         mb={{ base: 4, md: 0 }}
-                        w={'30%'}
+                        w={{ base: '100%', md: '30%' }}
                     />
 
                     <Spacer />
                     <Select
                         onChange={filterByRegion}
-                        w={'20%'}
+                        w={{ base: '100%', md: '20%' }}
                         fontWeight='600'
                         placeholder="Filter By Region">
                         <option
                             style={{ fontWeight: '600' }}
                             value="Africa">Africa</option>
-                        <option style={{ fontWeight: '600' }} value="Americas">America</option>
+                        <option style={{ fontWeight: '600' }} value="Amerias">America</option>
                         <option style={{ fontWeight: '600' }} value="Asia">Asia</option>
                         <option style={{ fontWeight: '600' }} value="Europe">Europe</option>
                         <option style={{ fontWeight: '600' }} value="Oceania">Oceania</option>
@@ -108,14 +111,35 @@ export const Countries = () => {
             </Box>
             {/* FIlter and search section end */}
 
+            {/* {!filteredCountries?.length ? (
+                <Flex
+                    alignContent='center'
+                    alignItems='center'
+                    justify='center'
+                    h='70vh'
+                    direction='column'
+                >
+
+                    <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        // emptyColor=''
+                        color='blue.500'
+                        size='xl'
+                    />
+                    <Text
+                    // my={5}
+
+                    >No Countries are found</Text>
+                </Flex>
+            )
+                :
+                null
+            } */}
             <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing="8" mx={5}
 
             >
 
-                {!countries?.length ? (
-                    <Spinner />
-                ) : null
-                }
                 {countries &&
                     (filteredCountries || countries).map((el, i) => (
                         <Card key={i}
