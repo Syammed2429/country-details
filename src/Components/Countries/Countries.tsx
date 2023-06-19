@@ -7,14 +7,14 @@ import { useNavigate } from "react-router-dom";
 export const Countries = () => {
     const [countries, setCountries] = useState<CountryData[]>([]);
     const [filteredCountries, setFilteredCountries] = useState<CountryData[] | null>(null);
-
-    // const [countries, setCountries] = useState<CountryData[] | null>(null)
     const navigate = useNavigate()
     const flexDir = useBreakpointValue({
         base: "column",
         md: "row",
     }) as any;
 
+
+    // A function to search the country names using the search field
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const countryName = e.target.value;
         if (countryName.trim() === '') {
@@ -24,6 +24,18 @@ export const Countries = () => {
             setFilteredCountries(foundData ?? []);
         }
     };
+
+    // A function to filter the countries by using the region 
+    const filterByRegion = (e: ChangeEvent<HTMLSelectElement>) => {
+        const regionName = e.target.value;
+        if (!e.target.value) {
+            setFilteredCountries(countries ?? [])
+        } else {
+            const foundRegion = countries?.filter((el) => el.region === regionName)
+            setFilteredCountries(foundRegion ?? []);
+
+        }
+    }
 
 
     useEffect(() => {
@@ -57,10 +69,9 @@ export const Countries = () => {
 
         setCountries(convertedData);
 
-        // }
-
     }, []);
 
+    // A method to navigate to the each individual country
     const viewCountry = (numericCode: string): void => {
         navigate(`/country-details/${numericCode}`)
     }
@@ -81,13 +92,14 @@ export const Countries = () => {
 
                     <Spacer />
                     <Select
+                        onChange={filterByRegion}
                         w={'20%'}
                         fontWeight='600'
                         placeholder="Filter By Region">
                         <option
                             style={{ fontWeight: '600' }}
                             value="Africa">Africa</option>
-                        <option style={{ fontWeight: '600' }} value="America">America</option>
+                        <option style={{ fontWeight: '600' }} value="Americas">America</option>
                         <option style={{ fontWeight: '600' }} value="Asia">Asia</option>
                         <option style={{ fontWeight: '600' }} value="Europe">Europe</option>
                         <option style={{ fontWeight: '600' }} value="Oceania">Oceania</option>
