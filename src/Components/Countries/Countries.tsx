@@ -100,13 +100,13 @@ export const Countries = () => {
                     <Spacer />
                     <Select
                         onChange={filterByRegion}
-                        w={{ base: '100%', md: '20%' }}
+                        w={{ base: '100%', md: '25%' }}
                         fontWeight='600'
                         placeholder="Filter By Region">
                         <option
                             style={{ fontWeight: '600' }}
                             value="Africa">Africa</option>
-                        <option style={{ fontWeight: '600' }} value="Amerias">America</option>
+                        <option style={{ fontWeight: '600' }} value="Americas">America</option>
                         <option style={{ fontWeight: '600' }} value="Asia">Asia</option>
                         <option style={{ fontWeight: '600' }} value="Europe">Europe</option>
                         <option style={{ fontWeight: '600' }} value="Oceania">Oceania</option>
