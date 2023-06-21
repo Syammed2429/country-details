@@ -1,4 +1,8 @@
-import { AspectRatio, Box, Card, CardBody, Center, Flex, Image, Input, Select, SimpleGrid, Spacer, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
+import {
+    AspectRatio, Box, Card, CardBody,
+    Flex, Image, Input, Select, SimpleGrid,
+    Spacer, Spinner, Text, useBreakpointValue
+} from "@chakra-ui/react";
 import countiesData from '../../assets/data.json'
 import { ChangeEvent, useEffect, useState } from "react";
 import { CountryData } from "../../Interfaces/Interface";
@@ -109,9 +113,7 @@ export const Countries = () => {
                     </Select>
                 </Flex>
             </Box>
-            {/* FIlter and search section end */}
-
-            {/* {!filteredCountries?.length ? (
+            {(!countries?.length && !filteredCountries?.length) ? (
                 <Flex
                     alignContent='center'
                     alignItems='center'
@@ -119,74 +121,68 @@ export const Countries = () => {
                     h='70vh'
                     direction='column'
                 >
-
                     <Spinner
                         thickness='4px'
                         speed='0.65s'
-                        // emptyColor=''
                         color='blue.500'
                         size='xl'
                     />
-                    <Text
-                    // my={5}
-
-                    >No Countries are found</Text>
+                    <Text>No Countries are found</Text>
                 </Flex>
-            )
-                :
-                null
-            } */}
-            <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing="8" mx={5}
+            ) :
+                (
+                    <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing="8" mx={5}
 
-            >
+                    >
 
-                {countries &&
-                    (filteredCountries || countries).map((el, i) => (
-                        <Card key={i}
-                            _hover={{ cursor: 'pointer' }}
-                            onClick={() => viewCountry(el.numericCode)}
-                        >
-
-                            <Box w="100%">
-                                <AspectRatio ratio={3 / 2}>
-                                    <Image
-                                        boxSize="100%"
-                                        objectFit="cover"
-                                        src={el.flags.svg}
-                                        alt={el.name}
-                                    />
-                                </AspectRatio>
-                            </Box>
-                            <CardBody>
-                                <Text fontWeight="800"
-                                    fontSize='xl'
-                                    mb={5}
+                        {countries &&
+                            (filteredCountries || countries).map((el, i) => (
+                                <Card key={i}
+                                    _hover={{ cursor: 'pointer' }}
+                                    onClick={() => viewCountry(el.numericCode)}
                                 >
-                                    {el.name}
-                                </Text>
-                                <Flex >
-                                    <Text fontWeight="600">Population:</Text>
-                                    <Text
-                                        mx={2}
-                                    >{el.population}</Text>
-                                </Flex>
-                                <Flex >
-                                    <Text fontWeight="600">Regions: </Text>
-                                    <Text
-                                        mx={2}
-                                    >{el.region}</Text>
-                                </Flex>
-                                <Flex >
-                                    <Text fontWeight="600">Capital: </Text>
-                                    <Text
-                                        mx={2}
-                                    >{el.capital}</Text>
-                                </Flex>
 
-                            </CardBody>
-                        </Card>
-                    ))}
-            </SimpleGrid>
+                                    <Box w="100%">
+                                        <AspectRatio ratio={3 / 2}>
+                                            <Image
+                                                boxSize="100%"
+                                                objectFit="cover"
+                                                src={el.flags.svg}
+                                                alt={el.name}
+                                            />
+                                        </AspectRatio>
+                                    </Box>
+                                    <CardBody>
+                                        <Text fontWeight="800"
+                                            fontSize='xl'
+                                            mb={5}
+                                        >
+                                            {el.name}
+                                        </Text>
+                                        <Flex >
+                                            <Text fontWeight="600">Population:</Text>
+                                            <Text
+                                                mx={2}
+                                            >{el.population}</Text>
+                                        </Flex>
+                                        <Flex >
+                                            <Text fontWeight="600">Regions: </Text>
+                                            <Text
+                                                mx={2}
+                                            >{el.region}</Text>
+                                        </Flex>
+                                        <Flex >
+                                            <Text fontWeight="600">Capital: </Text>
+                                            <Text
+                                                mx={2}
+                                            >{el.capital}</Text>
+                                        </Flex>
+
+                                    </CardBody>
+                                </Card>
+                            ))}
+                    </SimpleGrid>
+                )}
 
 
         </>
