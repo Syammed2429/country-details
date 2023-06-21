@@ -11,7 +11,10 @@ export const Navbar: FC = () => {
     return (
         <>
 
-            <Box>
+            <Box
+                mx={{ base: 0, md: 16 }}
+
+            >
                 <Flex boxShadow="2xl" p="5" alignItems="center" w="100%">
                     <Text flex="1"
                         fontWeight={'800'}
