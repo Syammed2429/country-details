@@ -52,12 +52,12 @@ export const CountryDetail = () => {
     return (
         <>
             <Box
-                mt={8} px={8} py={4}
+                mt={{ base: 0, md: 8 }} px={{ base: 0, md: 8 }} py={{ base: 0, md: 4 }}
             >
                 <Button
                     onClick={() => (navigate(-1))}
                     m={8}
-                    mx={16}
+                    mx={{ base: 7, md: 16 }}
                     leftIcon={<IoMdArrowBack />}
                 >Back</Button>
 
@@ -67,7 +67,7 @@ export const CountryDetail = () => {
                         mx={8}
                     >
                         <Box
-                            px={8} py={4}
+                            px={{ base: 0, md: 8 }} py={{ base: 0, md: 4 }}
                         >
                             <Image
                                 boxSize={{ base: "100%", md: "100%", lg: '80%' }}
@@ -77,12 +77,13 @@ export const CountryDetail = () => {
                             />
                         </Box>
                         <Box
-                            px={8} py={4} mt={{ base: 8, md: 8 }}
+                            px={{ base: 0, md: 8 }} py={{ base: 0, md: 4 }} mt={{ base: 8, md: 8 }}
                             w="70%"
                         >
                             <Text fontWeight={'extrabold'}
                                 fontSize={"4xl"}
                                 mb={10}
+                                w='100%'
                             >{countryDetails?.name}</Text>
                             <Flex
                                 direction={{ base: "column", md: "column", lg: "row" }}
@@ -120,14 +121,22 @@ export const CountryDetail = () => {
                                     </Flex>
                                 </Box>
                             </Flex>
-                            <Flex flexWrap="wrap"
+                            <Flex
+                                flexWrap="wrap"
                                 mt={12}
+                                w={{ base: '10rem', md: '100%' }}
                             >
                                 Border Countries:
-                                <Flex>
+                                <Flex
+                                    flexWrap="wrap"
+                                    justify='space-around'
+
+                                >
                                     {countryDetails.borders ? (
                                         countryDetails.borders.map((el, i) => (
-                                            <Card key={i} w="auto" px={5} mx={1}>
+                                            <Card key={i} w="auto"
+                                                px={2} mx={0}
+                                            >
                                                 {el}
                                             </Card>
                                         ))
